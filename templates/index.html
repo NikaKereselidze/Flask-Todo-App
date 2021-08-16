@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo App</title>
+	<link rel='stylesheet' href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+	<table>
+	    <thead>
+	        <tr>
+	            <th>ID</th>
+	            <th>Todo</th>
+	            <th>Update</th>
+	            <th>Delete</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	    	{%if todos%}
+	    		{%for todo in todos%}
+	    			<tr>
+	    				<td>{{todo.id}}</td>
+	    				<td>{{todo.todo}}</td>
+	    				<td class='update{{todo.id}}'><a style='color:blue;' id='update' class='updateA{{todo.id}}'>Update</a></td>
+	    				<td><a style='color:red;text-decoration:none;' href='/delete/{{todo.id}}'>Delete</a></td>
+	    				<script>
+						update{{todo.id}} = document.querySelector('.update{{todo.id}}')
+						updateA{{todo.id}} = document.querySelector('.updateA{{todo.id}}')
+						updateA{{todo.id}}.addEventListener('click', function(){
+							update{{todo.id}}.innerHTML = "<form action='/update/{{todo.id}}' method='POST'><input name='todo_update'></form>"
+						})
+						</script>
+	    			</tr>
+	    		{%endfor%}
+	    		{%else%}
+	    		<tr>	<td>0</td>
+	    				<td>No Todos Available</td>
+	    		</tr>
+	    	{%endif%}
+		</tbody>
+	</table>
+<br>
+<form action='/add' method='POST'>
+	<input name='todo' style='padding:5px;border:black 1px solid;'>	
+	<button class='addbtn' type='submit'>Add</button>
+</form>
+
+
+
+</body>

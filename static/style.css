@@ -1,0 +1,21 @@
+body {
+	font-family: sans-serif, calibri;
+}
+
+table tr th {
+	border: 1px solid black;
+}
+
+#update:hover {
+	cursor: pointer;
+}
+
+.addbtn {
+	background-color: white;
+	border: 1px black solid;
+	padding: 5px;
+}
+
+.addbtn:hover {
+	cursor:pointer;
+}
